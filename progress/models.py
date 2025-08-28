@@ -4,8 +4,7 @@ from assignments.models import Assignment
 from courses.models import Course
 
 class Progress(models.Model):
-
-    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, on_delete=models.CASCADE, related_name="progress_entries")
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
     is_completed = models.BooleanField(default=False)
 

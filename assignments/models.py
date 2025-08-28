@@ -1,11 +1,10 @@
 from django.db import models
 from users.models import Student
 from courses.models import Course
-from users.models import StudentProfile
 from django.contrib.auth.models import User
 
 class Progress(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="assignment_progress")
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     completed = models.BooleanField(default=False)
 
@@ -16,7 +15,7 @@ class Progress(models.Model):
 class Assignment(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    student = models.ForeignKey(StudentProfile, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="assignments")
     due_date = models.DateField()
 
     def __str__(self):

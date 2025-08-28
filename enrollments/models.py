@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from courses.models import Course
 
 class Enrollment(models.Model):
-    # Add a unique related_name
+  
     student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='enrollment_students')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='enrollment_courses')
     date_enrolled = models.DateField(auto_now_add=True)
